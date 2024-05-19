@@ -1,0 +1,23 @@
+default: &default
+  adapter:  postgresql
+  encoding: unicode
+  timeout:  5000
+  pool:     <%= pool = ENV['DB_POOL'].to_i; pool = 8 if pool.zero?; pool %>
+  host:     <%= ENV['DB_HOST'] || 'localhost' %>
+  username: <%= ENV['DB_USER'] || 'admin' %>
+  password: <%= ENV['DB_PASS'] || '1' %>
+  port:     <%= ENV['DB_PORT'] || '5432' %>
+  database: <%= ENV['DB_NAME'] || 'WriteIt_development' %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  pool:     1
+  database: <%= ENV['DB_NAME'] || 'WriteIt_test' %>
+
+production:
+  <<: *default
+  database: <%= ENV['DB_NAME'] || 'WriteIt_production' %>
+
