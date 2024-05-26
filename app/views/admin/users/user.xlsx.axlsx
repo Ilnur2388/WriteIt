@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "User") do |sheet|
+  sheet.add_row ['ID', user.id]
+  sheet.add_row ['Name', user.name]
+  sheet.add_row ['Family name', user.family_name]
+  sheet.add_row ['City', user.city]
+  sheet.add_row ['Created at', user.created_at]
+  sheet.add_row ['Updated at', user.updated_at]
+end
+

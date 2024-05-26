@@ -1,0 +1,10 @@
+<tr>
+  <th scope="row"><%= post.id %></th>
+  <td><%= post.title %></td>
+  <td><%= post.body %></td>
+  <td><%= post.state %></td>
+
+  <td>
+    <%= button_to 'Утвердить пост', admin_post_path(post), class: 'btn btn-secondary', params: { post: { state: :approved } }, method: :put %>
+    <%= button_to 'Отклонить пост', admin_post_path(post), class: 'btn btn-danger',  params: { post: { state: :rejected } }, method: :put, data: {method: :delete, confirm: 'Are you sure?'} %>
+</tr>
