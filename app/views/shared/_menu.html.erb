@@ -1,0 +1,31 @@
+<%= provide :main_menu do %>
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><%= link_to 'Домашняя страница', root_path,
+            class: 'nav-link px-2' %></li>
+          <li><%= link_to 'Посты', posts_path,
+            class: 'nav-link px-2' %></li>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to 'Пользователи', admin_users_path,
+            class: 'nav-link px-2' %></li>
+            <li><%= link_to 'Посты для проверки', admin_posts_path,
+            class: 'nav-link px-2' %></li>
+          <% end %>
+        </ul>
+
+        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <%= render 'search/form' %>
+          <% if user_sign_in? %>
+            <li><%= link_to current_user.name, edit_user_path(current_user), class: 'nav-link px-2' %></li>
+            <li><%= link_to "Выйти", session_path, class: "nav-link px-2", data: {method: :delete} %></li>
+          <% else %>
+            <li><%= link_to 'Зарегистироваться', new_user_path, class: 'nav-link px-2' %></li>
+            <li><%= link_to 'Войти', new_session_path, class: 'nav-link px-2' %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<% end %>

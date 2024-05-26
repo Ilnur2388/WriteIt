@@ -1,0 +1,9 @@
+<% provide :page_title, 'Домашняя страница' %>
+<% currently_at %>
+<h1>Добро пожаловать в приложение WriteIt</h1>
+
+<% if user_sign_in? %>
+  <%= link_to 'Новый пост', new_post_path, class: 'btn btn-primary btn-lg' %>
+<% else %>
+  <%= link_to 'Войти', new_session_path, class: 'btn btn-primary btn-lg' %>
+<% end %>

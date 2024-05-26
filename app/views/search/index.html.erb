@@ -1,0 +1,27 @@
+<h1 class="text-center"><%= pluralize(@posts.count, "Result") %></h1>
+
+<div class="container" >
+  <table class="table table-white table-striped">
+    <thead>
+      <tr>
+        <th><%= sort_link(@query, :title, "Название", default_order: :desc) %></th>
+        <th><%= sort_link(@query, :body, "Тело") %></th>
+        <th><%= sort_link(@query, :name, "Пользователи") %></th>
+        <th><%= sort_link(@query, :city, "Регион") %></th>
+        <th><%= sort_link(@query, :created_at, "Дата создания поста", default_order: :desc) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title %></td>
+        <td><%= link_to post.body %></td>
+        <td><%= link_to post.user.name %></td>
+        <td><%= link_to post.user.city %></td>
+        <td><%= link_to post.created_at %></td>
+      </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
