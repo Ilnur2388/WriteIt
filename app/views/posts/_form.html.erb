@@ -1,0 +1,39 @@
+<% currently_at %>
+<%= form_with model: @post do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :Название %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_field :title, placeholder: 'Заполните название поста', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :Тело %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :body, placeholder: 'Заполните тело поста', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :Регион %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :city, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+      <%= f.file_field :images, multiple: true %>
+  </div>
+
+  <%= f.submit "Сохранить как черновик", class: 'btn btn-primary', name: :draft %>
+  <%= f.submit "Отправить на проверку", class: 'btn btn-primary' %>
+<% end %>
