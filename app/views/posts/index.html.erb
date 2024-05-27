@@ -1,1 +1,35 @@
-<h1> Welcome WriteIt </h1>
+<% provide :page_title, 'Посты' %>
+<% currently_at %>
+<h1 class="mb-4">Посты</h1>
+
+  <%= link_to 'Новый пост', new_post_path, class: 'btn btn-primary btn-lg' %>
+
+<% @posts.each do |post| %>
+  <article class="card mt-3">
+    <section class="card-header">
+      <%= post.user.name %>
+    </section>
+
+    <div class="card-body">
+      <h4><%= post.title %></h2>
+
+        <p class="my-2">
+          <%= post.body %>
+        </p>
+
+        <p class="my-2">
+          <%= post.city %>
+        </p>
+
+      <% if policy(post).edit? %>
+        <%= link_to 'Редактировать', edit_post_path(post), class: 'btn btn-secondary' %>
+      <% end %>
+      <% if policy(post).destroy? %>
+      <% if post.state == 'draft' %>
+        <%= link_to 'Удалить', post_path(post), class: 'btn btn-danger',
+          data: {method: :delete, confirm: 'Are you sure?'} %>
+      <% end %>
+      <% end %>
+    </div>
+  </article>
+<% end %>
