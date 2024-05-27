@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
   before_action :require_current_user
   before_action :set_post!, only: %i[destroy edit update]
-  # before_action :send_post!, only: :create
   before_action :authorize_post!
 
   def index
-    @posts = Post.all
+    @posts = Post.where(city: current_user.city)
   end
 
   def new
@@ -14,6 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build post_params
+    @post.city = current_user.city if current_user.basic?
     @post.state = params[:draft] ? :draft : :review
     if @post.save
       flash[:success] = 'Пост создан успешно!'
