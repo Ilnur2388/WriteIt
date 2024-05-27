@@ -20,6 +20,7 @@
     </div>
   </div>
 
+<% if current_user.admin? %>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :Регион %>
@@ -29,6 +30,8 @@
       <%= f.text_area :city, class: 'form-control' %>
     </div>
   </div>
+
+<% end %>
 
   <div class="mb-3 row">
       <%= f.file_field :images, multiple: true %>
