@@ -27,6 +27,7 @@ gem 'caxlsx_rails', '~> 0.6.3'
 gem 'pundit', '~> 2.3', '>= 2.3.2'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
+gem 'rspec-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -59,3 +60,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "ransack", "~> 3.1"
+
+gem "factory_bot_rails", "~> 6.4", :groups => [:development, :test]
