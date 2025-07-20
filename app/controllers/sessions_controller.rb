@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Вы вошли!"
       redirect_to root_path
     else
-      flash.now[:warning] = 'Некорректный логин или пароль'
+      flash[:warning] = 'Некорректный логин или пароль'
       redirect_to new_session_path
     end
   end

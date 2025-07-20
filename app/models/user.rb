@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   enum role: { basic: 0, admin: 2 }
   has_secure_password
+  has_one_attached :avatar
 
   has_many :posts, dependent: :destroy
 

@@ -15,11 +15,19 @@
           <% end %>
         </ul>
 
-        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0 ms-n2">
           <%= render 'search/form' %>
           <% if user_sign_in? %>
-            <li><%= link_to current_user.name, edit_user_path(current_user), class: 'nav-link px-2' %></li>
-            <li><%= link_to "Выйти", session_path, class: "nav-link px-2", data: {method: :delete} %></li>
+            <li class="nav-link px-2 d-flex align-items-center">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize_to_limit: [30, 30]), class: "rounded-circle me-2" %>
+              <% else %>
+                <%= image_tag asset_pack_path('media/images/default_avatar.png'), size: "30x30", class: "rounded-circle me-2" %>
+              <% end %>
+            <ul class="nav col-12 col-lg-auto mb-2 mb-md-0 d-flex align-items-center">
+              <li><%= link_to current_user.name, edit_user_path(current_user), class: 'nav-link px-2' %></li>
+              <li><%= link_to "Выйти", session_path, class: "nav-link px-1", data: {method: :delete} %></li>
+            </ul>
           <% else %>
             <li><%= link_to 'Зарегистироваться', new_user_path, class: 'nav-link px-2' %></li>
             <li><%= link_to 'Войти', new_session_path, class: 'nav-link px-2' %></li>

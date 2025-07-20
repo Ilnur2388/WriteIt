@@ -11,6 +11,10 @@ class PostPolicy < ApplicationPolicy
     user.author?(record)
   end
 
+  def show?
+    true
+  end
+
   def destroy?
     user.author?(record)
   end

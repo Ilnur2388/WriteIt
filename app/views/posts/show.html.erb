@@ -1,0 +1,29 @@
+<% provide :page_title, 'Пост' %>
+
+<h1 class="mb-4">Просмотр поста</h1>
+
+<article class="card mt-3">
+  <section class="card-header">
+    <%= @post.user.name %>
+  </section>
+
+  <div class="card-body">
+    <h4><%= @post.title %></h4>
+
+    <p class="my-2">
+      <%= @post.body %>
+    </p>
+
+    <p class="my-2">
+      Город: <%= @post.city %>
+    </p>
+
+    <% if policy(@post).update? %>
+      <%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-secondary' %>
+    <% end %>
+
+    <% if policy(@post).destroy? && @post.state == 'draft' %>
+      <%= link_to 'Удалить', post_path(@post), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+</article>
