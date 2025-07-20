@@ -5,4 +5,9 @@
   <td><%= user.city %></td>
   <td><%= user.created_at %></td>
   <td><%= user.updated_at %></td>
+  <td>
+    <% unless user.admin? %>
+      <%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены?'}, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </td>
 </tr>
