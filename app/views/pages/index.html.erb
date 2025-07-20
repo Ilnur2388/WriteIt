@@ -7,3 +7,14 @@
 <% else %>
   <%= link_to 'Войти', new_session_path, class: 'btn btn-primary btn-lg' %>
 <% end %>
+
+<h2 class="mt-4">Последние посты</h2>
+<% @recent_post.each do |post| %>
+  <div class="card mb-2">
+    <div class="card-body">
+      <h5><%= link_to post.title, post_path(post) %></h5>
+      <p><%= truncate(post.body, length: 100) %></p>
+      <small>Автор: <%= post.user.name %> | <%= l(post.created_at, format: :short) %></small>
+    </div>
+  </div>
+<% end %>
