@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_action :authorize_post!
 
   def index
-    @posts = Post.where(city: current_user.city)
+    @posts = current_user.posts.where(city: current_user.city)
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -50,7 +54,7 @@ class PostsController < ApplicationController
   private
 
   def set_post!
-    @post = Post.find params[:id]
+    @post = current_user.posts.find params[:id]
   end
 
   # def send_post!
